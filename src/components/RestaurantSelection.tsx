@@ -19,7 +19,7 @@ const RestaurantSelection: React.FC<RestaurantSelectionProps> = ({ onSelectResta
           {restaurants.map((restaurant) => (
             <div
               key={restaurant.id}
-              className="bg-background-card border border-stroke rounded-lg p-8 text-center shadow-card"
+              className="card p-8 text-center"
             >
               <div className="mb-6">
                 <h2 
@@ -30,7 +30,7 @@ const RestaurantSelection: React.FC<RestaurantSelectionProps> = ({ onSelectResta
               </div>
               <button
                 onClick={() => onSelectRestaurant(restaurant.id)}
-                className="bg-white text-gray-900 px-6 py-3 rounded-pill font-medium hover:bg-gray-100 transition-colors duration-200 inline-flex items-center gap-2"
+                className="btn-primary"
               >
                 Build your meal
                 <ArrowRight size={16} />
@@ -46,7 +46,7 @@ const RestaurantSelection: React.FC<RestaurantSelectionProps> = ({ onSelectResta
         </div>
 
         <div className="mt-auto pt-16 max-w-3xl mx-auto">
-          <div className="bg-background border border-stroke rounded-lg p-6">
+          <div className="card p-6">
             <h3 className="text-text-primary font-semibold mb-3">Disclaimer</h3>
             <p className="text-text-secondary text-sm mb-3">
               This is an unofficial nutrition calculator that I built for fun, personal use, and education. It's not affiliated with Chipotle, Qdoba, MacroFactor, or anyone else.

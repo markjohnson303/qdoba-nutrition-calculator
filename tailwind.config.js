@@ -7,23 +7,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        stroke: '#303030',
+        stroke: '#747579',
         macro: {
-          protein: '#FF6E4D',
-          fat: '#F9D36D',
-          carb: '#5BD598',
-          calorie: '#2891FF'
+          protein: '#FF8660',
+          fat: '#FFD15E',
+          carb: '#5DBA87',
+          calorie: '#689EFA'
         },
         background: {
-          primary: '#121212',
-          secondary: '#1B1B1E',
-          card: '#222325',
-          surface: '#2C2C2F'
+          primary: '#141415',
+          secondary: '#1F1F1F',
+          tertiary: '#383838'
         },
         text: {
           primary: '#FFFFFF',
-          secondary: 'rgba(255,255,255,0.66)',
-          tertiary: 'rgba(255,255,255,0.38)'
+          secondary: '#B4B4B4',
+          tertiary: '#747579',
+          dark: '#141415'
         },
         branding: {
           accent: '#5BD598',
@@ -46,16 +46,34 @@ module.exports = {
       boxShadow: {
         'card': '0 1px 1px rgba(0,0,0,0.32)',
         'level2': '0 2px 4px rgba(0,0,0,0.48)'
-      },
-      transitionDuration: {
-        'fast': '150ms',
-        'normal': '300ms', 
-        'slow': '450ms'
-      },
-      transitionTimingFunction: {
-        'cardEase': 'cubic-bezier(0.4, 0, 0.2, 1)'
       }
     },
   },
-  plugins: [],
+  plugins: [
+    function({ addComponents }) {
+      addComponents({
+        '.card': {
+          '@apply bg-background-secondary rounded-lg': {},
+        },
+        '.tile': {
+          '@apply bg-background-tertiary rounded': {},
+        },
+        '.btn-primary': {
+          '@apply bg-white text-text-dark px-6 py-3 rounded-pill transition-all inline-flex items-center gap-2 hover:scale-105 active:bg-background-tertiary active:scale-95': {},
+        },
+        '.btn-secondary': {
+          '@apply px-4 py-2 bg-background-tertiary text-text-primary rounded-pill transition-colors flex items-center gap-2 text-sm border border-stroke hover:scale-105 active:bg-background-tertiary active:scale-95': {},
+        },
+        '.btn-selection': {
+          '@apply px-2 py-1 rounded text-xs text-text-primary border-[0.5px] border-transparent transition-colors duration-200 ease-in-out hover:scale-105 active:bg-background-tertiary active:scale-95 ease-in-out': {},
+        },
+        '.btn-selection-active': {
+          '@apply bg-white text-text-dark': {},
+        },
+        '.btn-selection-inactive': {
+          '@apply bg-background-tertiary hover:border-white': {},
+        },
+      })
+    }
+  ],
 }

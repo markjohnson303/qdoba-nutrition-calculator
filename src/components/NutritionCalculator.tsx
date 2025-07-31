@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { RotateCcw, ArrowLeft, Flame } from 'lucide-react';
+import { RotateCcw, ArrowLeft, Flame} from 'lucide-react';
 import { 
   Ingredient, 
   SelectedIngredients, 
@@ -132,13 +132,13 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
         <div className="flex gap-2">
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === portion.multiplier ? 0 : portion.multiplier)}
-            className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
+            className={`btn-selection ${
               current === portion.multiplier 
-                ? 'bg-text-primary text-background-primary border border-stroke' 
-                : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
+                ? 'btn-selection-active' 
+                : 'btn-selection-inactive'
             }`}
           >
-            {current === portion.multiplier ? `✓ ${portion.name}` : 'Select'}
+            {current === portion.multiplier ? `${portion.name}` : 'Select'}
           </button>
         </div>
       );
@@ -152,10 +152,10 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
             <button
               key={portion.multiplier}
               onClick={() => updateIngredient(category, ingredient.name, current === portion.multiplier ? 0 : portion.multiplier)}
-              className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
+              className={`btn-selection ${
                 current === portion.multiplier 
-                  ? 'bg-text-primary text-background-primary border border-stroke' 
-                  : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
+                  ? 'btn-selection-active' 
+                  : 'btn-selection-inactive'
               }`}
             >
               {portion.name}
@@ -168,17 +168,17 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
 
   const IngredientSection = ({ title, category, items }: { title: string; category: string; items: Ingredient[] }) => (
     <div className="mb-6">
-      <h3 className="text-sectionHeading text-text-primary border-b border-stroke pb-2 mb-3">
+      <h3 className="text-sectionHeading text-text-primary pb-2">
         {title}
       </h3>
       <div className="space-y-2">
         {items.map((ingredient: Ingredient, index: number) => (
-          <div key={`${ingredient.name}-${index}`} className="flex items-center justify-between p-3 bg-background-card rounded-lg gap-2 border border-stroke shadow-card overflow-hidden">
+          <div key={`${ingredient.name}-${index}`} className="flex items-center justify-between p-3 card gap-2 overflow-hidden">
             <div className="flex-1 min-w-0 pr-2">
               <div className="text-sm font-medium text-text-primary leading-tight">{ingredient.name}</div>
-              <div className="text-xs text-text-secondary">{ingredient.serving}</div>
-              <div className="text-xs text-text-tertiary mt-0.5">
-                <span className="font-bold whitespace-nowrap">{Math.round(ingredient.calories)}<Flame className="h-[0.7rem] w-[0.7rem] inline translate-y-[-0.05rem]" /></span> <span className="font-bold">{Math.round(ingredient.protein)}P {Math.round(ingredient.fat)}F {Math.round(ingredient.carbs)}C • {Math.round(ingredient.servingGrams ?? 0)}g</span>
+              <div className="text-xs opacity-60 mt-1">{ingredient.serving}</div>
+              <div className="text-xs opacity-60 mt-1">
+                <span className="whitespace-nowrap pr-2">{Math.round(ingredient.calories)}<Flame className="h-[0.7rem] w-[0.7rem] inline translate-y-[-0.05rem]" /></span><span className="pr-2">{Math.round(ingredient.protein)}P</span><span className="pr-2">{Math.round(ingredient.fat)}F</span><span className="pr-2">{Math.round(ingredient.carbs)}C</span><span className="pr-2">•</span><span className="pr-2">{Math.round(ingredient.servingGrams ?? 0)}g</span>
               </div>
             </div>
             <div className="flex-shrink-0">
@@ -193,13 +193,13 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
 
 
   return (
-    <div className={`min-h-screen bg-background-primary text-text-primary ${Object.keys(selectedIngredients).length > 0 ? 'pb-28' : 'pb-6'}`}>
+    <div className={`min-h-screen bg-background-primary text-text-primary pb-[4rem]`}>
       <div className="max-w-6xl mx-auto p-6">
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-4">
             <button
               onClick={onBack}
-              className="absolute left-6 top-6 px-3 py-2 bg-background-card text-text-primary rounded-pill hover:bg-stroke transition-colors duration-fast ease-cardEase flex items-center gap-2 text-sm border border-stroke"
+              className="absolute left-6 top-6 btn-primary"
             >
               <ArrowLeft size={16} />
             </button>
@@ -226,82 +226,76 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
         </div>
 
         {/* Full Nutrition Breakdown Section - always at bottom when ingredients selected */}
-        <div className="mt-12 bg-background-card p-6 rounded-lg border border-stroke">
+        <div className="mt-12 card p-6">
           <div className="text-center mb-6">
             <h2 className="text-titleBar text-text-primary mb-2">Nutrition Breakdown</h2>
           </div>
           
           {/* Main macros - 2 columns on mobile, 4 on desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
-            <div className="bg-macro-calorie p-4 rounded-lg text-center">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
+            <div className="tile bg-macro-calorie p-4 text-center">
               <div className="text-3xl font-bold text-black whitespace-nowrap">{totals.calories}</div>
-              <div className="text-sm text-black opacity-80">Calories</div>
+              <div className="text-sm text-black opacity-60">Calories</div>
             </div>
-            <div className="bg-macro-protein p-4 rounded-lg text-center">
+            <div className="tile bg-macro-protein p-4 text-center">
               <div className="text-3xl font-bold text-black">{totals.protein}g</div>
-              <div className="text-sm text-black opacity-80">Protein</div>
+              <div className="text-sm text-black opacity-60">Protein</div>
             </div>
-            <div className="bg-macro-fat p-4 rounded-lg text-center">
+            <div className="tile bg-macro-fat p-4 text-center">
               <div className="text-3xl font-bold text-black">{totals.fat}g</div>
-              <div className="text-sm text-black opacity-80">Total Fat</div>
+              <div className="text-sm text-black opacity-60">Total Fat</div>
             </div>
-            <div className="bg-macro-carb p-4 rounded-lg text-center">
+            <div className="tile bg-macro-carb p-4 text-center">
               <div className="text-3xl font-bold text-black">{totals.carbs}g</div>
-              <div className="text-sm text-black opacity-80">Carbohydrates</div>
+              <div className="text-sm text-black opacity-60">Carbohydrates</div>
             </div>
-          </div>
-          
           {/* Secondary nutritional info - 2 columns on mobile, 4 on desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.servingGrams}g</div>
-              <div className="text-caption text-text-secondary">Serving Size</div>
+              <div className="text-caption opacity-60">Serving Size</div>
             </div>
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.satFat}g</div>
-              <div className="text-caption text-text-secondary">Saturated Fat</div>
+              <div className="text-caption opacity-60">Saturated Fat</div>
             </div>
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.transFat}g</div>
-              <div className="text-caption text-text-secondary">Trans Fat</div>
+              <div className="text-caption opacity-60">Trans Fat</div>
             </div>
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.cholesterol}mg</div>
-              <div className="text-caption text-text-secondary">Cholesterol</div>
+              <div className="text-caption opacity-60">Cholesterol</div>
             </div>
-          </div>
-          
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+           <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.fiber}g</div>
-              <div className="text-caption text-text-secondary">Dietary Fiber</div>
+              <div className="text-caption opacity-60">Dietary Fiber</div>
             </div>
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.sugar}g</div>
-              <div className="text-caption text-text-secondary">Sugar</div>
+              <div className="text-caption opacity-60">Sugar</div>
             </div>
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.sodium}mg</div>
-              <div className="text-caption text-text-secondary">Sodium</div>
+              <div className="text-caption opacity-60">Sodium</div>
             </div>
-            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+            <div className="tile p-3 text-center">
               <div className="text-lg font-semibold text-text-primary">{totals.potassium}mg</div>
-              <div className="text-caption text-text-secondary">Potassium</div>
+              <div className="text-caption opacity-60">Potassium</div>
             </div>
           </div>
 
           {/* Your Selection */}
           {Object.keys(selectedIngredients).length > 0 && (
-            <div className="bg-background-primary p-4 rounded-lg border border-stroke shadow-card">
+            <div className="tile p-4">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm table-fixed">
                   <thead>
                     <tr className="border-b border-stroke">
                       <th className="text-left py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/2"></th>
-                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap"><Flame className="h-[0.875rem] w-[0.875rem] inline translate-y-[-0.05rem]" /></th>
-                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">P</th>
-                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">F</th>
-                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">C</th>
+                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap"><Flame className="text-macro-calorie h-[0.875rem] w-[0.875rem] inline translate-y-[-0.05rem]" /></th>
+                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8"><span className="text-macro-protein">P</span></th>
+                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8"><span className="text-macro-fat">F</span></th>
+                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8"><span className="text-macro-carb">C</span></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -328,11 +322,11 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
                       
                       return (
                         <tr key={`${category}-${name}`} className="border-b border-stroke last:border-b-0">
-                          <td className="py-3 px-2 text-text-tertiary align-middle">{name}{sizeLabel}</td>
-                          <td className="py-3 px-2 text-right text-text-primary font-medium align-middle whitespace-nowrap">{itemCalories}</td>
-                          <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemProtein}</td>
-                          <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemFat}</td>
-                          <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCarbs}</td>
+                          <td className="py-3 px-2 text-text-secondary align-middle">{name}{sizeLabel}</td>
+                          <td className="py-3 px-2 text-right text-macro-calorie font-medium align-middle whitespace-nowrap">{itemCalories}</td>
+                          <td className="py-3 px-2 text-right text-macro-protein font-medium align-middle">{itemProtein}</td>
+                          <td className="py-3 px-2 text-right text-macro-fat font-medium align-middle">{itemFat}</td>
+                          <td className="py-3 px-2 text-right text-macro-carb font-medium align-middle">{itemCarbs}</td>
                         </tr>
                       );
                     })}
@@ -344,18 +338,19 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
         </div>
 
         {/* Simple Sticky Macro Footer - always compact */}
-        <div className="fixed bottom-0 left-0 right-0 bg-background-card border-t border-stroke shadow-lg px-4 py-4">
-          <div className="max-w-6xl mx-auto flex items-center justify-between">
-            <div className="flex items-center gap-3 sm:gap-4">
+        <div className="card fixed bottom-0 left-0 right-0 p-4">
+          <div className="flex items-center justify-between sm:px-16">
+            <div className="flex items-center sm:gap-3">
               <div className="text-lg font-bold text-macro-calorie whitespace-nowrap">{totals.calories}<Flame className="h-[1.1rem] w-[1.1rem] inline translate-y-[-0.11rem]" /></div>
               <div className="text-lg font-bold text-macro-protein">{totals.protein}P</div>
               <div className="text-lg font-bold text-macro-fat">{totals.fat}F</div>
               <div className="text-lg font-bold text-macro-carb">{totals.carbs}C</div>
-              <div className="text-lg font-bold text-text-secondary">• {totals.servingGrams ?? 0}g</div>
+              <div className="text-lg font-bold opacity-60">•</div>
+              <div className="text-lg font-bold opacity-60">{totals.servingGrams ?? 0}g</div>
             </div>
             <button
               onClick={resetCalculator}
-              className="px-4 py-2 bg-background-surface text-text-primary rounded-pill hover:bg-stroke transition-colors duration-fast ease-cardEase flex items-center gap-2 text-sm flex-shrink-0 border border-stroke"
+              className="btn-primary flex-shrink-0"
             >
               <RotateCcw size={16} />
             </button>
