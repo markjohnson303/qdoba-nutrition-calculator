@@ -1,6 +1,18 @@
 import { useState, useMemo } from 'react';
 import { RotateCcw } from 'lucide-react';
 
+// Flame SVG Component
+const FlameIcon = ({ className = "w-4 h-4" }) => (
+  <svg 
+    className={className} 
+    viewBox="0 0 512 512" 
+    fill="currentColor"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path d="M394.23,197.56a300.43,300.43,0,0,0-53.37-90C301.2,61.65,249.05,32,208,32a16,16,0,0,0-15.48,20c13.87,53-14.88,97.07-45.31,143.72C122,234.36,96,274.27,96,320c0,88.22,71.78,160,160,160s160-71.78,160-160C416,276.7,408.68,235.51,394.23,197.56ZM288.33,418.69C278,429.69,265.05,432,256,432s-22-2.31-32.33-13.31S208,390.24,208,368c0-25.14,8.82-44.28,17.34-62.78,4.95-10.74,10-21.67,13-33.37a8,8,0,0,1,12.49-4.51A126.48,126.48,0,0,1,275,292c18.17,24,29,52.42,29,76C304,390.24,298.58,407.77,288.33,418.69Z"/>
+  </svg>
+);
+
 // Type definitions
 interface Ingredient {
   name: string;
@@ -174,10 +186,10 @@ const App = () => {
         <div className="flex gap-2">
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === 1 ? 0 : 1)}
-            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+            className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
               current === 1 
-                ? 'bg-orange-500 text-white' 
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-text-primary text-background-primary border border-stroke' 
+                : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
             }`}
           >
             {current === 1 ? '✓ Selected' : 'Select'}
@@ -192,20 +204,20 @@ const App = () => {
         <div className="flex gap-1">
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === 1 ? 0 : 1)}
-            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+            className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
               current === 1 
-                ? 'bg-orange-500 text-white' 
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-text-primary text-background-primary border border-stroke' 
+                : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
             }`}
           >
             Regular
           </button>
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === 2 ? 0 : 2)}
-            className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+            className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
               current === 2 
-                ? 'bg-orange-500 text-white' 
-                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                ? 'bg-text-primary text-background-primary border border-stroke' 
+                : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
             }`}
           >
             Extra
@@ -219,30 +231,30 @@ const App = () => {
       <div className="flex gap-1">
         <button
           onClick={() => updateIngredient(category, ingredient.name, current === 0.5 ? 0 : 0.5)}
-          className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
             current === 0.5 
-              ? 'bg-orange-500 text-white' 
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-text-primary text-background-primary border border-stroke' 
+              : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
           }`}
         >
           Light
         </button>
         <button
           onClick={() => updateIngredient(category, ingredient.name, current === 1 ? 0 : 1)}
-          className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
             current === 1 
-              ? 'bg-orange-500 text-white' 
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-text-primary text-background-primary border border-stroke' 
+              : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
           }`}
         >
           Regular
         </button>
         <button
           onClick={() => updateIngredient(category, ingredient.name, current === 2 ? 0 : 2)}
-          className={`px-3 py-1 rounded text-sm font-medium transition-colors ${
+          className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
             current === 2 
-              ? 'bg-orange-500 text-white' 
-              : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+              ? 'bg-text-primary text-background-primary border border-stroke' 
+              : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
           }`}
         >
           Extra
@@ -253,17 +265,17 @@ const App = () => {
 
   const IngredientSection = ({ title, category, items }: { title: string; category: string; items: Ingredient[] }) => (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold mb-3 text-orange-700 border-b border-orange-200 pb-1">
+      <h3 className="text-sectionHeading text-text-primary border-b border-stroke pb-2 mb-3">
         {title}
       </h3>
       <div className="space-y-2">
         {items.map((ingredient: Ingredient, index: number) => (
-          <div key={`${ingredient.name}-${index}`} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-gray-50 rounded-lg gap-3">
+          <div key={`${ingredient.name}-${index}`} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-background-card rounded-lg gap-3 border border-stroke">
             <div className="flex-1">
-              <div className="font-medium text-gray-800">{ingredient.name}</div>
-              <div className="text-sm text-gray-600">{ingredient.serving} ({ingredient.servingGrams}g)</div>
-              <div className="text-xs text-gray-500 mt-1">
-                🔥 {ingredient.calories} • <span className="font-bold">P</span> {ingredient.protein}g • <span className="font-bold">F</span> {ingredient.fat}g • <span className="font-bold">C</span> {ingredient.carbs}g
+              <div className="font-medium text-text-primary">{ingredient.name}</div>
+              <div className="text-caption text-text-secondary">{ingredient.serving}</div>
+              <div className="text-xs text-text-tertiary mt-1">
+                <span className="font-bold">{ingredient.calories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /> {ingredient.protein}P {ingredient.fat}F {ingredient.carbs}C • {ingredient.servingGrams}g</span>
               </div>
             </div>
             <div className="flex-shrink-0">
@@ -276,18 +288,12 @@ const App = () => {
   );
 
   return (
-    <div className={`max-w-6xl mx-auto p-6 bg-white ${Object.keys(selectedIngredients).length > 0 ? 'pb-32' : 'pb-6'}`}>
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-orange-600 mb-2">Qdoba Nutrition Calculator</h1>
-        <p className="text-gray-600">Build your custom burrito or bowl and track the nutrition</p>
-        <button
-          onClick={resetCalculator}
-          className="mt-4 px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors flex items-center gap-2 mx-auto"
-        >
-          <RotateCcw size={16} />
-          Reset Calculator
-        </button>
-      </div>
+    <div className={`min-h-screen bg-background-primary text-text-primary ${Object.keys(selectedIngredients).length > 0 ? 'pb-28' : 'pb-6'}`}>
+      <div className="max-w-6xl mx-auto p-6">
+        <div className="text-center mb-8">
+          <h1 className="text-titleBar text-text-primary mb-2">Qdoba Nutrition Calculator</h1>
+          <p className="text-text-secondary">Build your custom burrito or bowl and track the nutrition</p>
+        </div>
 
       <div className="grid md:grid-cols-1 gap-8">
         {/* Ingredient Selection */}
@@ -302,153 +308,146 @@ const App = () => {
         </div>
       </div>
 
-      <div className="mt-8 text-xs text-gray-500 text-center">
-        <p>Nutrition information based on Qdoba's official 2025 nutrition facts. Values are approximate and may vary.</p>
-        <p>Choose Bowl or Burrito, then customize with Light/Regular/Extra portions. Proteins have Regular/Extra options only.</p>
-      </div>
-
       {/* Full Nutrition Breakdown Section - always at bottom when ingredients selected */}
-      {Object.keys(selectedIngredients).length > 0 && (
-        <div className="mt-12 bg-orange-50 p-6 rounded-lg">
+        <div className="mt-12 bg-background-card p-6 rounded-lg border border-stroke">
           <div className="text-center mb-6">
-            <h2 className="text-2xl font-bold text-orange-700 mb-2">Complete Nutrition Breakdown</h2>
-            <div className="text-lg text-gray-600">Total Serving Size: <span className="font-semibold text-orange-600">{totals.servingGrams}g</span></div>
-          </div>
-          
-          {/* Main macros - 4 columns */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.calories}</div>
-              <div className="text-sm text-gray-600">Calories</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.protein}g</div>
-              <div className="text-sm text-gray-600">Protein</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.fat}g</div>
-              <div className="text-sm text-gray-600">Total Fat</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.carbs}g</div>
-              <div className="text-sm text-gray-600">Carbohydrates</div>
-            </div>
+            <h2 className="text-titleBar text-text-primary mb-2">Nutrition Breakdown</h2>
           </div>
           
           {/* Main macros - 2 columns on mobile, 4 on desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.calories}</div>
-              <div className="text-sm text-gray-600">Calories</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
+            <div className="bg-macro-calorie p-4 rounded-lg text-center">
+              <div className="text-3xl font-bold text-black">{totals.calories}<FlameIcon className="w-6 h-6 inline -translate-y-1" /></div>
+              <div className="text-sm text-black opacity-80">Calories</div>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.protein}g</div>
-              <div className="text-sm text-gray-600">Protein</div>
+            <div className="bg-macro-protein p-4 rounded-lg text-center">
+              <div className="text-3xl font-bold text-black">{totals.protein}P</div>
+              <div className="text-sm text-black opacity-80">Protein</div>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.fat}g</div>
-              <div className="text-sm text-gray-600">Total Fat</div>
+            <div className="bg-macro-fat p-4 rounded-lg text-center">
+              <div className="text-3xl font-bold text-black">{totals.fat}F</div>
+              <div className="text-sm text-black opacity-80">Total Fat</div>
             </div>
-            <div className="bg-white p-4 rounded-lg text-center shadow-sm">
-              <div className="text-3xl font-bold text-orange-600">{totals.carbs}g</div>
-              <div className="text-sm text-gray-600">Carbohydrates</div>
+            <div className="bg-macro-carb p-4 rounded-lg text-center">
+              <div className="text-3xl font-bold text-black">{totals.carbs}C</div>
+              <div className="text-sm text-black opacity-80">Carbohydrates</div>
             </div>
           </div>
           
           {/* Secondary nutritional info - 2 columns on mobile, 4 on desktop */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-4">
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.satFat}g</div>
-              <div className="text-xs text-gray-600">Saturated Fat</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.servingGrams}g</div>
+              <div className="text-caption text-text-secondary">Serving Size</div>
             </div>
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.transFat}g</div>
-              <div className="text-xs text-gray-600">Trans Fat</div>
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.satFat}g</div>
+              <div className="text-caption text-text-secondary">Saturated Fat</div>
             </div>
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.cholesterol}mg</div>
-              <div className="text-xs text-gray-600">Cholesterol</div>
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.transFat}g</div>
+              <div className="text-caption text-text-secondary">Trans Fat</div>
             </div>
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.fiber}g</div>
-              <div className="text-xs text-gray-600">Dietary Fiber</div>
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.cholesterol}mg</div>
+              <div className="text-caption text-text-secondary">Cholesterol</div>
             </div>
           </div>
           
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-6">
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.sugar}g</div>
-              <div className="text-xs text-gray-600">Sugar</div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.fiber}g</div>
+              <div className="text-caption text-text-secondary">Dietary Fiber</div>
             </div>
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.sodium}mg</div>
-              <div className="text-xs text-gray-600">Sodium</div>
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.sugar}g</div>
+              <div className="text-caption text-text-secondary">Sugar</div>
             </div>
-            <div className="bg-gray-50 p-3 rounded-lg text-center">
-              <div className="text-lg font-semibold text-gray-800">{totals.potassium}mg</div>
-              <div className="text-xs text-gray-600">Potassium</div>
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.sodium}mg</div>
+              <div className="text-caption text-text-secondary">Sodium</div>
             </div>
-            <div className="bg-gray-50 p-3 rounded-lg text-center sm:block hidden">
-              <div className="text-lg font-semibold text-gray-600">–</div>
-              <div className="text-xs text-gray-600">–</div>
+            <div className="bg-background-primary p-3 rounded-lg text-center border border-stroke shadow-card">
+              <div className="text-lg font-semibold text-text-primary">{totals.potassium}mg</div>
+              <div className="text-caption text-text-secondary">Potassium</div>
             </div>
           </div>
 
           {/* Your Selection */}
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <h3 className="font-semibold text-gray-800 mb-3">Your Selection:</h3>
-            <div className="text-sm space-y-2">
-              {(Object.values(selectedIngredients) as { category: string, name: string, multiplier: number }[]).map((item) => {
-                const category = item.category;
-                const name = item.name;
-                const multiplier = item.multiplier;
-                
-                let sizeLabel = '';
-                if (category === 'style') {
-                  sizeLabel = '';
-                } else if (category === 'protein') {
-                  sizeLabel = multiplier === 2 ? ' (Extra)' : ' (Regular)';
-                } else {
-                  sizeLabel = multiplier === 0.5 ? ' (Light)' : multiplier === 1 ? ' (Regular)' : ' (Extra)';
-                }
-                
-                return (
-                  <div key={`${category}-${name}`} className="flex justify-between py-1 border-b border-gray-100 last:border-b-0">
-                    <span className="text-gray-600">{name}</span>
-                    <span className="text-gray-800 font-medium">{sizeLabel}</span>
-                  </div>
-                );
-              })}
+          {Object.keys(selectedIngredients).length > 0 && (
+          <div className="bg-background-primary p-4 rounded-lg border border-stroke shadow-card">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm table-fixed">
+                <thead>
+                  <tr className="border-b border-stroke">
+                    <th className="text-left py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/2"></th>
+                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">CAL<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></th>
+                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">P</th>
+                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">F</th>
+                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">C</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(Object.values(selectedIngredients) as { category: string, name: string, multiplier: number }[]).map((item) => {
+                    const category = item.category;
+                    const name = item.name;
+                    const multiplier = item.multiplier;
+                    
+                    // Find the ingredient data to calculate nutrition
+                    const ingredient = ingredients.find(ing => ing.name === name);
+                    
+                    let sizeLabel = '';
+                    if (category === 'style') {
+                      sizeLabel = '';
+                    } else if (category === 'protein') {
+                      sizeLabel = multiplier === 2 ? ' (Extra)' : ' (Regular)';
+                    } else {
+                      sizeLabel = multiplier === 0.5 ? ' (Light)' : multiplier === 1 ? ' (Regular)' : ' (Extra)';
+                    }
+                    
+                    // Calculate nutrition values for this item
+                    const itemCalories = ingredient ? Math.round((ingredient.calories * multiplier) * 10) / 10 : 0;
+                    const itemProtein = ingredient ? Math.round((ingredient.protein * multiplier) * 10) / 10 : 0;
+                    const itemFat = ingredient ? Math.round((ingredient.fat * multiplier) * 10) / 10 : 0;
+                    const itemCarbs = ingredient ? Math.round((ingredient.carbs * multiplier) * 10) / 10 : 0;
+                    
+                    return (
+                      <tr key={`${category}-${name}`} className="border-b border-stroke last:border-b-0">
+                        <td className="py-3 px-2 text-text-tertiary align-middle">{name}{sizeLabel}</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCalories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemProtein}P</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemFat}F</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCarbs}C</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
           </div>
+        )}
         </div>
-      )}
 
       {/* Simple Sticky Macro Footer - always compact */}
-      {Object.keys(selectedIngredients).length > 0 && (
-        <div className="fixed bottom-0 left-0 right-0 bg-white border-t-2 border-orange-500 shadow-lg p-3">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              <div className="text-center">
-                <div className="text-lg font-bold text-orange-600">{totals.calories}</div>
-                <div className="text-xs text-gray-600">Calories</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-orange-600">{totals.protein}g</div>
-                <div className="text-xs text-gray-600">Protein</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-orange-600">{totals.fat}g</div>
-                <div className="text-xs text-gray-600">Fat</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-orange-600">{totals.carbs}g</div>
-                <div className="text-xs text-gray-600">Carbs</div>
-              </div>
+        <div className="fixed bottom-0 left-0 right-0 bg-background-card border-t border-stroke shadow-lg px-4 py-4">
+          <div className="max-w-6xl mx-auto flex items-center justify-between">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <div className="text-lg font-bold text-macro-calorie">{totals.calories}<FlameIcon className="w-4 h-4 inline -translate-y-0.5" /></div>
+              <div className="text-lg font-bold text-macro-protein">{totals.protein}P</div>
+              <div className="text-lg font-bold text-macro-fat">{totals.fat}F</div>
+              <div className="text-lg font-bold text-macro-carb">{totals.carbs}C</div>
+              <div className="text-lg font-bold text-text-secondary">• {totals.servingGrams}g</div>
             </div>
+            <button
+              onClick={resetCalculator}
+              className="px-4 py-2 bg-background-surface text-text-primary rounded-pill hover:bg-stroke transition-colors duration-fast ease-cardEase flex items-center gap-2 text-sm flex-shrink-0 border border-stroke"
+            >
+              <RotateCcw size={16} />
+              Reset
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
