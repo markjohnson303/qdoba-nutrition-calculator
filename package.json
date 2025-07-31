@@ -1,7 +1,7 @@
 {
-  "name": "qdoba-nutrition-calculator",
+  "name": "restaurant-menu-calculator",
   "version": "1.0.0",
-  "description": "A self-contained Qdoba nutrition calculator app",
+  "description": "A multi-restaurant nutrition calculator app",
   "main": "index.html",
   "scripts": {
     "dev": "vite",
@@ -28,11 +28,12 @@
   "keywords": [
     "nutrition",
     "calculator", 
-    "qdoba",
+    "restaurant",
+    "menu",
     "react",
     "health"
   ],
   "author": "",
   "license": "MIT",
-  "homepage": "https://markjohnson303.github.io/qdoba-nutrition-calculator"
+  "homepage": "https://markjohnson303.github.io/restaurant-menu-calculator"
 }

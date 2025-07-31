@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { RotateCcw } from 'lucide-react';
 
 const App = () => {
-  // Complete ingredient data extracted from official Qdoba 2025 nutrition facts
+  // Complete ingredient data extracted from official restaurant nutrition facts
   const ingredients = [
     { name: "Bowl", category: "style", serving: "no tortilla", servingGrams: 0, calories: 0, fat: 0, satFat: 0, transFat: 0, cholesterol: 0, carbs: 0, fiber: 0, sugar: 0, protein: 0, sodium: 0, potassium: 0 },
     { name: "Burrito", category: "style", serving: "12.5\" tortilla", servingGrams: 102, calories: 300, fat: 7, satFat: 2.5, transFat: 0, cholesterol: 0, carbs: 52, fiber: 3, sugar: 2, protein: 8, sodium: 760, potassium: 50 },
@@ -234,7 +234,7 @@ const App = () => {
   return (
     <div className={`max-w-6xl mx-auto p-6 bg-white ${Object.keys(selectedIngredients).length > 0 ? 'pb-32' : 'pb-6'}`}>
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold text-orange-600 mb-2">Qdoba Nutrition Calculator</h1>
+        <h1 className="text-3xl font-bold text-orange-600 mb-2">Restaurant Menu Calculator</h1>
         <p className="text-gray-600">Build your custom burrito or bowl and track the nutrition</p>
         <button
           onClick={resetCalculator}
@@ -259,7 +259,7 @@ const App = () => {
       </div>
 
       <div className="mt-8 text-xs text-gray-500 text-center">
-        <p>Nutrition information based on Qdoba's official 2025 nutrition facts. Values are approximate and may vary.</p>
+        <p>Nutrition information based on official restaurant nutrition facts. Values are approximate and may vary.</p>
         <p>Choose Bowl or Burrito, then customize with Light/Regular/Extra portions. Proteins have Regular/Extra options only.</p>
       </div>
 
