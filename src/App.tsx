@@ -1,9 +1,53 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { RotateCcw } from 'lucide-react';
+
+// Type definitions
+interface Ingredient {
+  name: string;
+  category: string;
+  serving: string;
+  servingGrams: number;
+  calories: number;
+  fat: number;
+  satFat: number;
+  transFat: number;
+  cholesterol: number;
+  carbs: number;
+  fiber: number;
+  sugar: number;
+  protein: number;
+  sodium: number;
+  potassium: number;
+}
+
+interface SelectedIngredient {
+  category: string;
+  name: string;
+  multiplier: number;
+}
+
+interface SelectedIngredients {
+  [key: string]: SelectedIngredient;
+}
+
+interface NutritionalTotals {
+  servingGrams: number;
+  calories: number;
+  fat: number;
+  satFat: number;
+  transFat: number;
+  cholesterol: number;
+  carbs: number;
+  fiber: number;
+  sugar: number;
+  protein: number;
+  sodium: number;
+  potassium: number;
+}
 
 const App = () => {
   // Complete ingredient data extracted from official Qdoba 2025 nutrition facts
-  const ingredients = [
+  const ingredients: Ingredient[] = [
     { name: "Bowl", category: "style", serving: "no tortilla", servingGrams: 0, calories: 0, fat: 0, satFat: 0, transFat: 0, cholesterol: 0, carbs: 0, fiber: 0, sugar: 0, protein: 0, sodium: 0, potassium: 0 },
     { name: "Burrito", category: "style", serving: "12.5\" tortilla", servingGrams: 102, calories: 300, fat: 7, satFat: 2.5, transFat: 0, cholesterol: 0, carbs: 52, fiber: 3, sugar: 2, protein: 8, sodium: 760, potassium: 50 },
     { name: "Cilantro Lime Rice", category: "rice", serving: "4 oz", servingGrams: 113, calories: 190, fat: 2.5, satFat: 0.5, transFat: 0, cholesterol: 0, carbs: 38, fiber: 1, sugar: 0, protein: 3, sodium: 390, potassium: 30 },
@@ -42,9 +86,9 @@ const App = () => {
     { name: "Fiery Habanero Salsa (Hot)", category: "salsasSauces", serving: "1 oz", servingGrams: 28, calories: 10, fat: 0, satFat: 0, transFat: 0, cholesterol: 0, carbs: 2, fiber: 1, sugar: 1, protein: 0, sodium: 110, potassium: 10 }
   ];
 
-  const [selectedIngredients, setSelectedIngredients] = useState({});
+  const [selectedIngredients, setSelectedIngredients] = useState<SelectedIngredients>({});
 
-  const updateIngredient = (category, name, multiplier) => {
+  const updateIngredient = (category: string, name: string, multiplier: number) => {
     const key = `${category}-${name}`;
     setSelectedIngredients(prev => {
       const newState = { ...prev };
@@ -79,7 +123,7 @@ const App = () => {
   };
 
   const totals = useMemo(() => {
-    let totals = {
+    let totals: NutritionalTotals = {
       servingGrams: 0,
       calories: 0,
       fat: 0,
@@ -94,7 +138,7 @@ const App = () => {
       potassium: 0
     };
 
-    (Object.values(selectedIngredients) as { category: string, name: string, multiplier: number }[]).forEach(({ category, name, multiplier }) => {
+    Object.values(selectedIngredients).forEach(({ name, multiplier }) => {
       const ingredient = ingredients.find(item => item.name === name);
       if (ingredient) {
         totals.servingGrams += ingredient.servingGrams * multiplier;
@@ -113,14 +157,14 @@ const App = () => {
     });
 
     // Round to 1 decimal place
-    Object.keys(totals).forEach(key => {
+    (Object.keys(totals) as (keyof NutritionalTotals)[]).forEach(key => {
       totals[key] = Math.round(totals[key] * 10) / 10;
     });
 
     return totals;
   }, [selectedIngredients]);
 
-  const ServingControls = ({ category, ingredient }) => {
+  const ServingControls = ({ category, ingredient }: { category: string; ingredient: Ingredient }) => {
     const key = `${category}-${ingredient.name}`;
     const current = selectedIngredients[key]?.multiplier || 0;
 
@@ -207,13 +251,13 @@ const App = () => {
     );
   };
 
-  const IngredientSection = ({ title, category, items }) => (
+  const IngredientSection = ({ title, category, items }: { title: string; category: string; items: Ingredient[] }) => (
     <div className="mb-6">
       <h3 className="text-lg font-semibold mb-3 text-orange-700 border-b border-orange-200 pb-1">
         {title}
       </h3>
       <div className="space-y-2">
-        {items.map((ingredient, index) => (
+        {items.map((ingredient: Ingredient, index: number) => (
           <div key={`${ingredient.name}-${index}`} className="flex flex-col sm:flex-row sm:items-center justify-between p-3 bg-gray-50 rounded-lg gap-3">
             <div className="flex-1">
               <div className="font-medium text-gray-800">{ingredient.name}</div>
