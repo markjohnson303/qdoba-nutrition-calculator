@@ -339,8 +339,8 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
 
         {/* Simple Sticky Macro Footer - always compact */}
         <div className="card fixed bottom-0 left-0 right-0 p-4">
-          <div className="flex items-center justify-between px-16">
-            <div className="flex items-center sm:gap-3">
+          <div className="flex items-center justify-between sm:px-16">
+            <div className="flex items-center gap-3">
               <div className="text-lg font-bold text-macro-calorie whitespace-nowrap">{totals.calories}<Flame className="h-[1.1rem] w-[1.1rem] inline translate-y-[-0.11rem]" /></div>
               <div className="text-lg font-bold text-macro-protein">{totals.protein}P</div>
               <div className="text-lg font-bold text-macro-fat">{totals.fat}F</div>
