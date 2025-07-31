@@ -170,7 +170,7 @@ const App = () => {
 
     // Round to 1 decimal place
     (Object.keys(totals) as (keyof NutritionalTotals)[]).forEach(key => {
-      totals[key] = Math.round(totals[key] * 10) / 10;
+      totals[key] = Math.round(totals[key]);
     });
 
     return totals;
@@ -186,7 +186,7 @@ const App = () => {
         <div className="flex gap-2">
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === 1 ? 0 : 1)}
-            className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
+            className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
               current === 1 
                 ? 'bg-text-primary text-background-primary border border-stroke' 
                 : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
@@ -204,7 +204,7 @@ const App = () => {
         <div className="flex gap-1">
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === 1 ? 0 : 1)}
-            className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
+            className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
               current === 1 
                 ? 'bg-text-primary text-background-primary border border-stroke' 
                 : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
@@ -214,7 +214,7 @@ const App = () => {
           </button>
           <button
             onClick={() => updateIngredient(category, ingredient.name, current === 2 ? 0 : 2)}
-            className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
+            className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
               current === 2 
                 ? 'bg-text-primary text-background-primary border border-stroke' 
                 : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
@@ -231,7 +231,7 @@ const App = () => {
       <div className="flex gap-1">
         <button
           onClick={() => updateIngredient(category, ingredient.name, current === 0.5 ? 0 : 0.5)}
-          className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
+          className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
             current === 0.5 
               ? 'bg-text-primary text-background-primary border border-stroke' 
               : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
@@ -241,7 +241,7 @@ const App = () => {
         </button>
         <button
           onClick={() => updateIngredient(category, ingredient.name, current === 1 ? 0 : 1)}
-          className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
+          className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
             current === 1 
               ? 'bg-text-primary text-background-primary border border-stroke' 
               : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
@@ -251,7 +251,7 @@ const App = () => {
         </button>
         <button
           onClick={() => updateIngredient(category, ingredient.name, current === 2 ? 0 : 2)}
-          className={`px-4 py-2 rounded-pill text-sm font-medium transition-colors duration-fast ease-cardEase ${
+          className={`px-2 py-1 rounded-pill text-xs font-medium transition-colors duration-fast ease-cardEase ${
             current === 2 
               ? 'bg-text-primary text-background-primary border border-stroke' 
               : 'bg-background-card text-text-tertiary hover:bg-stroke border border-stroke'
@@ -270,12 +270,12 @@ const App = () => {
       </h3>
       <div className="space-y-2">
         {items.map((ingredient: Ingredient, index: number) => (
-          <div key={`${ingredient.name}-${index}`} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-background-card rounded-lg gap-3 border border-stroke">
-            <div className="flex-1">
-              <div className="font-medium text-text-primary">{ingredient.name}</div>
-              <div className="text-caption text-text-secondary">{ingredient.serving}</div>
-              <div className="text-xs text-text-tertiary mt-1">
-                <span className="font-bold whitespace-nowrap">{ingredient.calories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></span> <span className="font-bold">{ingredient.protein}P {ingredient.fat}F {ingredient.carbs}C • {ingredient.servingGrams}g</span>
+          <div key={`${ingredient.name}-${index}`} className="flex items-center justify-between p-3 bg-background-card rounded-lg gap-2 border border-stroke shadow-card overflow-hidden">
+            <div className="flex-1 min-w-0 pr-2">
+              <div className="text-sm font-medium text-text-primary leading-tight">{ingredient.name}</div>
+              <div className="text-xs text-text-secondary">{ingredient.serving}</div>
+              <div className="text-xs text-text-tertiary mt-0.5">
+                <span className="font-bold whitespace-nowrap">{Math.round(ingredient.calories)}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></span> <span className="font-bold">{Math.round(ingredient.protein)}P {Math.round(ingredient.fat)}F {Math.round(ingredient.carbs)}C • {Math.round(ingredient.servingGrams)}g</span>
               </div>
             </div>
             <div className="flex-shrink-0">
@@ -317,19 +317,19 @@ const App = () => {
           {/* Main macros - 2 columns on mobile, 4 on desktop */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
             <div className="bg-macro-calorie p-4 rounded-lg text-center">
-              <div className="text-3xl font-bold text-black whitespace-nowrap">{totals.calories}<FlameIcon className="w-6 h-6 inline -translate-y-1" /></div>
+              <div className="text-3xl font-bold text-black whitespace-nowrap">{totals.calories}</div>
               <div className="text-sm text-black opacity-80">Calories</div>
             </div>
             <div className="bg-macro-protein p-4 rounded-lg text-center">
-              <div className="text-3xl font-bold text-black">{totals.protein}P</div>
+              <div className="text-3xl font-bold text-black">{totals.protein}g</div>
               <div className="text-sm text-black opacity-80">Protein</div>
             </div>
             <div className="bg-macro-fat p-4 rounded-lg text-center">
-              <div className="text-3xl font-bold text-black">{totals.fat}F</div>
+              <div className="text-3xl font-bold text-black">{totals.fat}g</div>
               <div className="text-sm text-black opacity-80">Total Fat</div>
             </div>
             <div className="bg-macro-carb p-4 rounded-lg text-center">
-              <div className="text-3xl font-bold text-black">{totals.carbs}C</div>
+              <div className="text-3xl font-bold text-black">{totals.carbs}g</div>
               <div className="text-sm text-black opacity-80">Carbohydrates</div>
             </div>
           </div>
@@ -381,7 +381,7 @@ const App = () => {
                 <thead>
                   <tr className="border-b border-stroke">
                     <th className="text-left py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/2"></th>
-                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap">CAL<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></th>
+                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap"><FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></th>
                     <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">P</th>
                     <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">F</th>
                     <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">C</th>
@@ -406,18 +406,18 @@ const App = () => {
                     }
                     
                     // Calculate nutrition values for this item
-                    const itemCalories = ingredient ? Math.round((ingredient.calories * multiplier) * 10) / 10 : 0;
-                    const itemProtein = ingredient ? Math.round((ingredient.protein * multiplier) * 10) / 10 : 0;
-                    const itemFat = ingredient ? Math.round((ingredient.fat * multiplier) * 10) / 10 : 0;
-                    const itemCarbs = ingredient ? Math.round((ingredient.carbs * multiplier) * 10) / 10 : 0;
+                    const itemCalories = ingredient ? Math.round((ingredient.calories * multiplier)) : 0;
+                    const itemProtein = ingredient ? Math.round((ingredient.protein * multiplier)) : 0;
+                    const itemFat = ingredient ? Math.round((ingredient.fat * multiplier)) : 0;
+                    const itemCarbs = ingredient ? Math.round((ingredient.carbs * multiplier)) : 0;
                     
                     return (
                       <tr key={`${category}-${name}`} className="border-b border-stroke last:border-b-0">
                         <td className="py-3 px-2 text-text-tertiary align-middle">{name}{sizeLabel}</td>
-                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle whitespace-nowrap">{itemCalories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></td>
-                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemProtein}P</td>
-                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemFat}F</td>
-                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCarbs}C</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle whitespace-nowrap">{itemCalories}</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemProtein}</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemFat}</td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCarbs}</td>
                       </tr>
                     );
                   })}
@@ -443,7 +443,6 @@ const App = () => {
               className="px-4 py-2 bg-background-surface text-text-primary rounded-pill hover:bg-stroke transition-colors duration-fast ease-cardEase flex items-center gap-2 text-sm flex-shrink-0 border border-stroke"
             >
               <RotateCcw size={16} />
-              Reset
             </button>
           </div>
         </div>
