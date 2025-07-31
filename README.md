@@ -13,36 +13,7 @@ A self-contained React app that helps you calculate nutrition facts for your cus
 
 ## Live Demo
 
-Visit the live app: [https://USERNAME.github.io/qdoba-nutrition-calculator](https://USERNAME.github.io/qdoba-nutrition-calculator)
-
-*(Replace USERNAME with your GitHub username)*
-
-## Deployment to GitHub Pages
-
-### Quick Setup
-
-1. **Fork or clone this repository**
-2. **Update the repository name** in `package.json` and `vite.config.ts`:
-   ```json
-   "homepage": "https://YOUR_USERNAME.github.io/qdoba-nutrition-calculator"
-   ```
-   ```ts
-   base: '/qdoba-nutrition-calculator/',
-   ```
-
-3. **Enable GitHub Pages**:
-   - Go to your repository settings
-   - Navigate to "Pages" in the sidebar
-   - Under "Source", select "GitHub Actions"
-
-4. **Push to main branch**:
-   ```bash
-   git add .
-   git commit -m "Initial commit"
-   git push origin main
-   ```
-
-The GitHub Action will automatically build and deploy your app!
+Visit the live app: [https://markjohnson303.github.io/qdoba-nutrition-calculator](https://markjohnson303.github.io/qdoba-nutrition-calculator)
 
 ### Local Development
 
