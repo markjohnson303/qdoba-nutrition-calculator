@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import RestaurantSelection from './RestaurantSelection';
+import RestaurantSelection from './components/RestaurantSelection';
 import NutritionCalculator from './components/NutritionCalculator';
 import { getRestaurantName } from './data/restaurantData';
 

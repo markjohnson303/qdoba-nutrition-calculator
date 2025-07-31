@@ -1,12 +1,11 @@
 # Restaurant Menu Calculator
 
-A multi-restaurant React app that helps you calculate nutrition facts for your custom meals. Built with React, TypeScript, and Tailwind CSS, featuring official nutrition data from various restaurants.
+A self-contained, multi-restaurant React app that helps you calculate nutrition facts for your custom meals. Inspired by the [MacroFactor](https://macrofactorapp.com/) app (of which I'm a big fan). Built with React, TypeScript, and Tailwind CSS, featuring official nutrition data from various restaurants (currently Chipotle and Qdoba).
 
 ## Features
 
 - 🥙 **Complete Ingredient Database**: All restaurant ingredients with official nutrition facts
 - 📊 **Real-time Calculations**: Live nutrition totals as you build your meal
-- 🎛️ **Portion Control**: Light/Regular/Extra portions for most ingredients
 - 📱 **Mobile Responsive**: Works great on all devices
 - 🎨 **Modern UI**: Clean, intuitive interface with Tailwind CSS
 - ⚡ **Fast & Lightweight**: No backend required, runs entirely in the browser
@@ -37,15 +36,6 @@ Visit the live app: [https://markjohnson303.github.io/restaurant-menu-calculator
    npm run preview
    ```
 
-### Manual Deployment
-
-If you prefer to deploy manually:
-
-```bash
-npm run build
-npm run deploy
-```
-
 ## Project Structure
 
 ```
@@ -54,25 +44,14 @@ Restaurant-Menu-Calculator/
 │   ├── App.tsx                    # Main application component
 │   ├── main.tsx                   # React entry point
 │   ├── index.css                  # Global styles with Tailwind
-│   ├── RestaurantSelection.tsx    # Restaurant selection component
 │   ├── components/
-│   │   └── NutritionCalculator.tsx # Main nutrition calculator component
+│   │   ├── NutritionCalculator.tsx # Main nutrition calculator component
+│   │   └── RestaurantSelection.tsx # Restaurant selection component
 │   └── data/
 │       ├── menuData.ts            # Menu items and nutrition data
 │       ├── restaurantData.ts      # Restaurant information
 │       └── categoryData.ts        # Menu categories and organization
-├── .github/workflows/
-│   └── deploy.yml                 # GitHub Actions deployment
 ├── index.html                     # HTML entry point
-├── package.json                   # Dependencies and scripts
-├── package-lock.json              # Locked dependency versions
-├── vite.config.ts                 # Vite configuration
-├── tailwind.config.js             # Tailwind CSS configuration
-├── postcss.config.js              # PostCSS configuration
-├── tsconfig.json                  # TypeScript configuration
-├── tsconfig.node.json             # TypeScript config for Node.js
-├── .gitignore                     # Git ignore patterns
-└── restaurant-menu-calculator.tsx # Legacy single-file component
 ```
 
 ## Technology Stack
@@ -86,14 +65,7 @@ Restaurant-Menu-Calculator/
 
 ## Nutrition Data
 
-All nutrition information is based on official restaurant nutrition facts. The app includes:
-
-- All style options (Bowl, Burrito)
-- Rice varieties (Cilantro Lime, Seasoned Brown)
-- Bean options (Black, Pinto)
-- All protein choices including plant-based options
-- Quesos and toppings
-- Salsas and sauces with heat levels
+All nutrition information is based on official restaurant nutrition facts, however I make no guarantee as to its accuracy.
 
 ## Contributing
 
@@ -116,4 +88,10 @@ If you find this useful, consider:
 
 ---
 
-*Note: This is an unofficial nutrition calculator. Always verify nutrition information with restaurants directly for dietary restrictions or precise nutritional needs.*
+## Disclaimer
+
+This is an unofficial nutrition calculator that I built for fun, personal use, and education. It’s not affiliated with Chipotle, Qdoba, MacroFactor, or anyone else.
+
+The nutrition info might not be 100% accurate or up to date, so if you have specific dietary needs, allergies, or health goals, you should double-check with the restaurant or a healthcare professional. I don’t collect any data, and I’m not responsible for how you use the tool or any decisions you make based on it. Use it at your own risk.
+
+All brand names and logos belong to their respective owners.
