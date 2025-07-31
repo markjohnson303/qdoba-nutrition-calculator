@@ -275,7 +275,7 @@ const App = () => {
               <div className="font-medium text-text-primary">{ingredient.name}</div>
               <div className="text-caption text-text-secondary">{ingredient.serving}</div>
               <div className="text-xs text-text-tertiary mt-1">
-                <span className="font-bold">{ingredient.calories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /> {ingredient.protein}P {ingredient.fat}F {ingredient.carbs}C • {ingredient.servingGrams}g</span>
+                <span className="font-bold whitespace-nowrap">{ingredient.calories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></span> <span className="font-bold">{ingredient.protein}P {ingredient.fat}F {ingredient.carbs}C • {ingredient.servingGrams}g</span>
               </div>
             </div>
             <div className="flex-shrink-0">
@@ -317,7 +317,7 @@ const App = () => {
           {/* Main macros - 2 columns on mobile, 4 on desktop */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 mb-8">
             <div className="bg-macro-calorie p-4 rounded-lg text-center">
-              <div className="text-3xl font-bold text-black">{totals.calories}<FlameIcon className="w-6 h-6 inline -translate-y-1" /></div>
+              <div className="text-3xl font-bold text-black whitespace-nowrap">{totals.calories}<FlameIcon className="w-6 h-6 inline -translate-y-1" /></div>
               <div className="text-sm text-black opacity-80">Calories</div>
             </div>
             <div className="bg-macro-protein p-4 rounded-lg text-center">
@@ -381,7 +381,7 @@ const App = () => {
                 <thead>
                   <tr className="border-b border-stroke">
                     <th className="text-left py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/2"></th>
-                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">CAL<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></th>
+                    <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap">CAL<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></th>
                     <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">P</th>
                     <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">F</th>
                     <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">C</th>
@@ -414,7 +414,7 @@ const App = () => {
                     return (
                       <tr key={`${category}-${name}`} className="border-b border-stroke last:border-b-0">
                         <td className="py-3 px-2 text-text-tertiary align-middle">{name}{sizeLabel}</td>
-                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCalories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></td>
+                        <td className="py-3 px-2 text-right text-text-primary font-medium align-middle whitespace-nowrap">{itemCalories}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></td>
                         <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemProtein}P</td>
                         <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemFat}F</td>
                         <td className="py-3 px-2 text-right text-text-primary font-medium align-middle">{itemCarbs}C</td>
@@ -432,7 +432,7 @@ const App = () => {
         <div className="fixed bottom-0 left-0 right-0 bg-background-card border-t border-stroke shadow-lg px-4 py-4">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="text-lg font-bold text-macro-calorie">{totals.calories}<FlameIcon className="w-4 h-4 inline -translate-y-0.5" /></div>
+              <div className="text-lg font-bold text-macro-calorie whitespace-nowrap">{totals.calories}<FlameIcon className="w-4 h-4 inline -translate-y-0.5" /></div>
               <div className="text-lg font-bold text-macro-protein">{totals.protein}P</div>
               <div className="text-lg font-bold text-macro-fat">{totals.fat}F</div>
               <div className="text-lg font-bold text-macro-carb">{totals.carbs}C</div>
