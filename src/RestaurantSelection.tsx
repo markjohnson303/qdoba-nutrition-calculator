@@ -1,25 +1,10 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
-
-interface Restaurant {
-  id: string;
-  name: string;
-}
+import { restaurants } from './data/restaurantData';
 
 interface RestaurantSelectionProps {
   onSelectRestaurant: (restaurantId: string) => void;
 }
-
-const restaurants: Restaurant[] = [
-  {
-    id: 'qdoba',
-    name: 'Qdoba',
-  },
-  {
-    id: 'chipotle',
-    name: 'Chipotle'
-  }
-];
 
 const RestaurantSelection: React.FC<RestaurantSelectionProps> = ({ onSelectRestaurant }) => {
   return (

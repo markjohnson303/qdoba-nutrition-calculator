@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import RestaurantSelection from './RestaurantSelection';
 import NutritionCalculator from './components/NutritionCalculator';
+import { getRestaurantName } from './data/restaurantData';
 
 interface AppState {
   currentView: 'restaurant-selection' | 'calculator';
@@ -17,7 +18,7 @@ const App = () => {
   });
 
   const handleRestaurantSelection = (restaurantId: string) => {
-    const restaurantName = restaurantId === 'qdoba' ? 'Qdoba' : 'Chipotle';
+    const restaurantName = getRestaurantName(restaurantId);
     
     setAppState({
       currentView: 'calculator',
