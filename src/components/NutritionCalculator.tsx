@@ -202,7 +202,6 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
               className="absolute left-6 top-6 px-3 py-2 bg-background-card text-text-primary rounded-pill hover:bg-stroke transition-colors duration-fast ease-cardEase flex items-center gap-2 text-sm border border-stroke"
             >
               <ArrowLeft size={16} />
-              Back
             </button>
             <h1 className="text-titleBar text-text-primary">{restaurantName} Nutrition Calculator</h1>
           </div>
