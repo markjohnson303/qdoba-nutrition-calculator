@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { RotateCcw, ArrowLeft } from 'lucide-react';
+import { RotateCcw, ArrowLeft, Flame } from 'lucide-react';
 import { 
   Ingredient, 
   SelectedIngredients, 
@@ -8,17 +8,7 @@ import {
 } from '../data/menuData';
 import { getCategoriesForRestaurant, getCategoryRules } from '../data/categoryData';
 
-// Flame SVG Component
-const FlameIcon = ({ className = "w-4 h-4" }) => (
-  <svg 
-    className={className} 
-    viewBox="0 0 512 512" 
-    fill="currentColor"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path d="M394.23,197.56a300.43,300.43,0,0,0-53.37-90C301.2,61.65,249.05,32,208,32a16,16,0,0,0-15.48,20c13.87,53-14.88,97.07-45.31,143.72C122,234.36,96,274.27,96,320c0,88.22,71.78,160,160,160s160-71.78,160-160C416,276.7,408.68,235.51,394.23,197.56ZM288.33,418.69C278,429.69,265.05,432,256,432s-22-2.31-32.33-13.31S208,390.24,208,368c0-25.14,8.82-44.28,17.34-62.78,4.95-10.74,10-21.67,13-33.37a8,8,0,0,1,12.49-4.51A126.48,126.48,0,0,1,275,292c18.17,24,29,52.42,29,76C304,390.24,298.58,407.77,288.33,418.69Z"/>
-  </svg>
-);
+
 
 interface NutritionCalculatorProps {
   restaurantId: string;
@@ -188,7 +178,7 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
               <div className="text-sm font-medium text-text-primary leading-tight">{ingredient.name}</div>
               <div className="text-xs text-text-secondary">{ingredient.serving}</div>
               <div className="text-xs text-text-tertiary mt-0.5">
-                <span className="font-bold whitespace-nowrap">{Math.round(ingredient.calories)}<FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></span> <span className="font-bold">{Math.round(ingredient.protein)}P {Math.round(ingredient.fat)}F {Math.round(ingredient.carbs)}C • {Math.round(ingredient.servingGrams ?? 0)}g</span>
+                <span className="font-bold whitespace-nowrap">{Math.round(ingredient.calories)}<Flame className="h-[0.7rem] w-[0.7rem] inline translate-y-[-0.05rem]" /></span> <span className="font-bold">{Math.round(ingredient.protein)}P {Math.round(ingredient.fat)}F {Math.round(ingredient.carbs)}C • {Math.round(ingredient.servingGrams ?? 0)}g</span>
               </div>
             </div>
             <div className="flex-shrink-0">
@@ -309,7 +299,7 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
                   <thead>
                     <tr className="border-b border-stroke">
                       <th className="text-left py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/2"></th>
-                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap"><FlameIcon className="w-3 h-3 inline -translate-y-0.5" /></th>
+                      <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8 whitespace-nowrap"><Flame className="h-[0.875rem] w-[0.875rem] inline translate-y-[-0.05rem]" /></th>
                       <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">P</th>
                       <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">F</th>
                       <th className="text-right py-3 px-2 text-caption text-text-secondary uppercase font-bold align-middle w-1/8">C</th>
@@ -358,7 +348,7 @@ const NutritionCalculator: React.FC<NutritionCalculatorProps> = ({
         <div className="fixed bottom-0 left-0 right-0 bg-background-card border-t border-stroke shadow-lg px-4 py-4">
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-3 sm:gap-4">
-              <div className="text-lg font-bold text-macro-calorie whitespace-nowrap">{totals.calories}<FlameIcon className="w-4 h-4 inline -translate-y-0.5" /></div>
+              <div className="text-lg font-bold text-macro-calorie whitespace-nowrap">{totals.calories}<Flame className="h-[1.1rem] w-[1.1rem] inline translate-y-[-0.11rem]" /></div>
               <div className="text-lg font-bold text-macro-protein">{totals.protein}P</div>
               <div className="text-lg font-bold text-macro-fat">{totals.fat}F</div>
               <div className="text-lg font-bold text-macro-carb">{totals.carbs}C</div>
